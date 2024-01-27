@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  front:
+    build:
+      context: .
+      args:
+        WORKDIR: ${WORKDIR}
+        API_URL: "http://localhost:${API_PORT}/"
+    container_name: kanko-key-front
+    command: npm run start
+    volumes:
+      - .:/${WORKDIR}
+    ports:
+      - "${FRONT_PORT}:${FRONT_PORT}"
+    networks:
+      - front
+
+networks:
+  front:
+    external: false
